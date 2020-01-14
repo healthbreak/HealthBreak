@@ -16,6 +16,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="HandheldFriendly" content="true">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">         
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <style type="text/css">
     body {
@@ -324,6 +326,39 @@ button:hover{
      alt="">
 
 </div>
+<script>  
+var myIndex = 0;  
+carousel();  
+
+function carousel() {  
+    var i;  
+    var x = document.getElementsByClassName("mySlides");  
+    for (i = 0; i < x.length; i++) {  
+       x[i].style.display = "none";    
+    }  
+    myIndex++;  
+    if (myIndex > x.length) {myIndex = 1}      
+    x[myIndex-1].style.display = "block";    
+    setTimeout(carousel, 5000); // Change image every 5 seconds  
+} 
+</script>
+<script>
+
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("nav");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+
+
+</script> 
 
 
 
