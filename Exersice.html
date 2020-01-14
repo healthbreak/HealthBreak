@@ -1,0 +1,356 @@
+<html>
+<head>
+  <title>HealthBreak</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:site_name" content="VA Mirrors Apps" />
+  <meta name="title" content="HealthBreak">
+  <meta name="description" content="An app for testing and comparing glasses">
+  <meta property='og:image:type' content='image/png' />
+  <meta property='og:image:width' content='200' />
+  <meta property='og:image:height' content='200' />
+  <meta property="og:image" itemprop="image" content="va.png">
+
+  
+
+  <style type="text/css">
+    body {
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+            "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+            sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          background: #fff !important;
+          color: #666 !important;
+          font-size: 16px !important;
+          align-items: center;
+          justify-content: center;
+          text-align: center !important;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.App{
+  text-align: center;
+}
+
+
+
+.container {
+  /* display: flex; */
+  justify-content: center;
+  /* flex-wrap: wrap; */
+
+}
+
+
+
+
+.row {
+   display: flex; /*equal height of the children */
+  justify-content: center;
+  /* border: solid 1px black; */
+  margin-bottom: 4%;
+}
+
+.col {
+  flex: 1; /* additionally, equal width */
+}
+
+
+.Middlediv{
+  border: solid 1px black;
+  width: max-width;
+}
+
+.Bottomdiv{
+  border: solid 1px black;
+}
+
+.wrap-buttons{
+  position: absolute;
+  bottom: 7%;
+  left: 0;
+  right: 0;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.playvideo-button,
+.startrecord-button,
+.stoprecord-button{
+  box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    /* border: 2px solid #fff; */
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    /* font-weight: bold; */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0 auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.playvideo-button:hover,
+.startrecord-button:hover,
+.stoprecord-button:hover{
+  background-color: rgba(0,0,0,0.8);
+  box-shadow: 0px 0px 10px rgba(255,255,100,1);
+  text-shadow: 0px 0px 10px rgba(255,255,100,1);
+}
+
+.share-button{
+  box-sizing: border-box;
+    width: 70px;
+    height: 70px;
+    /* border: 2px solid #fff; */
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0 auto;
+    background-color: rgba(0,0,0,0.5);
+    margin-bottom: 5%;
+}
+
+.share-button:hover{
+  background-color: rgba(0,0,0,0.8);
+  box-shadow: 0px 0px 10px rgba(255,255,100,1);
+  text-shadow: 0px 0px 10px rgba(255,255,100,1);
+}
+
+button{
+  box-sizing: border-box;
+    width: 100px;
+   
+    border: 2px solid rgba(0,0,0,0.5);;
+    border-radius: 50%;
+    color: rgba(0,0,0,0.5);
+    text-align: center;
+    text-decoration: none;
+    font-size: 16;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-bottom: 5%;
+}
+
+button:hover{
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgb(35, 172, 46);
+  /* text-shadow: 0px 0px 10px rgb(35, 172, 46); */
+}
+
+
+    </style>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+</head>
+
+<body>
+          <!-- The core Firebase JS SDK is always required and must be listed first -->
+          <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+
+          <!-- TODO: Add SDKs for Firebase products that you want to use
+              https://firebase.google.com/docs/web/setup#available-libraries -->
+          <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+          <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-database.js"></script>
+          
+
+          <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+              apiKey: "AIzaSyCaN564Zad20LrMIWCBg7IQDWmYpiXTDLw",
+              authDomain: "vamirrors.firebaseapp.com",
+              databaseURL: "https://vamirrors.firebaseio.com",
+              projectId: "vamirrors",
+              storageBucket: "vamirrors.appspot.com",
+              messagingSenderId: "694139676651",
+              appId: "1:694139676651:web:65bd8cf6937340d5801bae",
+              measurementId: "G-T7EJHWGYX8"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+
+
+
+
+           var database = firebase.database();
+
+          </script>
+
+
+
+<div class='App'>
+  <div class="container">
+    
+        
+    <div class="row">
+      <div class="col-3">
+          <br>
+          <!-- <font size="5"><b>Logo</b></font> -->
+          <a href="index.html"><img src='./logo_health_break.BMP' width="200"/></a>
+          <br>    
+     </div>
+     <div class="col-4">
+          <br>
+          <br>
+          <a href="Premiuim.html"><button type="button">Premium</button></a>
+          <a href="Shop.html"><button type="button">Shop</button></a>
+          <a href="Download.html"><button type="button">Download</button></a>     
+      </div>
+      <div class="col-5">
+   
+      </div>
+    </div>
+
+
+
+    <div class="row" >
+        <div class="col-3 text-left  font-weight-bold">
+          <a href="https://www.ebay.com/itm/KT2-Ergonomic-Under-Desk-Keyboard-Tray-w-Large-Adjustable-Hei-35335-fromJAPAN/283735571756?hash=item420ff53d2c:g:6YAAAOSwaZdeFUWZ" target="_blank">
+          <img src='https://www.picclickimg.com/00/s/MTUwMFgxNTAw/z/0y0AAOSwtc9bv3Fu/$/Ergonomic-Under-desk-Keyboard-Tray-Shelf-with-Swivel-_1.jpg' width="200" style="border: solid 2px black;" />
+          </a>
+          <br>
+          Description :
+          <br>
+          Price:
+        </div>
+        <div class="col-3 text-left  font-weight-bold">
+          <a href="https://www.ebay.com/p/1742232472?iid=153433784814&rt=nc" target="_blank">
+          <img src='https://mdyo.co.il/i/6520.jpg' width="200" style="border: solid 2px black;" />
+          </a>
+          <br>
+          Description :
+          <br>
+          Price:
+        </div>
+		<div class="col-3 text-left  font-weight-bold">
+		  <a href="https://www.ebay.com/itm/HYKEN-Black-Technical-Mesh-Task-Ergonomic-Durable-Best-Office-Summer-Chair-NEW/202603408701?hash=item2f2c1aad3d:g:430AAOSwai1Z7U9a" target="_blank">
+          <img src='http://www.argaman-metal.co.il/images/itempics/old0619_large.jpg' width="200" style="border: solid 2px black;" />
+		  </a>
+          <br>
+          Description :
+          <br>
+          Price:
+        </div>
+		<div class="col-3 text-left  font-weight-bold">
+		  <a href="https://www.amazon.com/Gimars-Superfine-Support-Keyboard-Computer/dp/B01MYZMODY?ref_=fsclp_pl_dp_1" target="_blank">
+          <img src='https://images-na.ssl-images-amazon.com/images/I/616PwJaLrSL._AC_SX466_.jpg' width="200" style="border: solid 2px black;" />
+		  </a>
+          <br>
+          Description :
+          <br>
+          Price:
+        </div>
+    </div>
+    <div class="row" >
+      <div class="col-3 text-left  font-weight-bold">
+		<a href="https://www.amazon.com/SKYZONAL-Ergonomic-Adjustable-Armrest-Rest-Only/dp/B01AA2LGCI?ref_=fsclp_pl_dp_4" target="_blank">
+        <img src='https://images-na.ssl-images-amazon.com/images/I/41j75k8JSxL._AC_SX355_.jpg' width="200" style="border: solid 2px black;" />
+		</a>
+        <br>
+		Description :
+		<br>
+		Price:
+      </div>
+      <div class="col-3 text-left  font-weight-bold">
+		<a href="https://www.amazon.com/AmazonBasics-Ventilated-Adjustable-Laptop-Stand/dp/B00WRDS8H0?creativeASIN=B00WRDS8H0&linkCode=w61&imprToken=-TxqKeqpzJx4VqhaUrvmyA&slotNum=0&tag=bp_links-20&ascsubtag=%5bartid%7C2089.g.1755%5bsrc%7C%5bch%7C%5blt%7C" target="_blank">
+        <img src='https://images-na.ssl-images-amazon.com/images/I/81aoktD1VLL._AC_SX425_.jpg' width="200" style="border: solid 2px black;" />
+		</a>
+        <br>
+        Description :
+        <br>
+        Price:
+      </div>
+		<div class="col-3 text-left  font-weight-bold">
+	  	<a href="https://www.amazon.com/Portable-Laptop-Table-Stand-Adjustable-Ergonomic-Mount-Ultrabook-Macbook-Aluminum-Black/dp/B00EP48NMY/ref=as_li_ss_tl?ie=UTF8&linkCode=sl1&tag=ergotrends-20&linkId=0d8d82c26d227afa0eafa3c4ffe8322c&linkCode=w61&imprToken=O-qkDKhYah33lXzddDCLJw&slotNum=36" target="_blank">
+        <img src='https://images-na.ssl-images-amazon.com/images/I/71RQTGmBKZL._AC_SX679_.jpg' width="200" style="border: solid 2px black;" />
+		</a>
+        <br>
+        Description :
+        <br>
+        Price:
+      </div>
+		<div class="col-3 text-left  font-weight-bold">
+		<a href="https://www.amazon.com/VARIDESK-Height-Adjustable-Standing-Desk-Black/dp/B00JI6NCCK/ref=as_li_ss_tl?s=office-products&ie=UTF8&qid=1502900260&sr=1-4&keywords=Varidesk&linkCode=sl1&tag=ergotrends-20&linkId=1869ba5dc6c4492b7efa5e7b4c609e20&linkCode=w61&imprToken=O-qkDKhYah33lXzddDCLJw&slotNum=12" target="_blank">
+        <img src='https://www.varidesk.com/images/librariesprovider3/default-album/varidesk-proplus-36-black-dimensions70f3dbd9eef66cbc9309ff1200d93b41.jpg?sfvrsn=0' width="200" style="border: solid 2px black;" />
+		</a>
+		Description :
+		<br>
+		Price:
+      </div>
+  </div>
+  <div class="row" >
+    <div class="col-3 text-left  font-weight-bold">
+	  <a href="https://www.amazon.com/Original-McKenzie-Lumbar-Roll-OPTP/dp/B000H48WYA/ref=as_li_ss_tl?th=1&linkCode=sl1&tag=ergotrends-20&linkId=54a3ad5b71f535d20afdf5b881714c7a&linkCode=w61&imprToken=y2QgW4bfznE7sEBh9XAsOQ&slotNum=10" target="_blank">
+      <img src='https://images-na.ssl-images-amazon.com/images/I/91IG%2BB4UE8L._AC_SX522_.jpg' width="200" style="border: solid 2px black;" />
+	  </a>
+      <br>
+	  Description :
+	  <br>
+	  Price:
+    </div>
+    <div class="col-3 text-left  font-weight-bold">
+	  <a href="https://www.officeanything.com/ofm-small-clamp-on-sit-to-stand-workstation-5200s" target="_blank">
+      <img src='https://images-na.ssl-images-amazon.com/images/I/41szdl0rGnL.jpg' width="200" style="border: solid 2px black;" />
+	  </a>
+      <br>
+	  Description :
+	  <br>
+	  Price:
+    </div><div class="col-3 text-left  font-weight-bold">
+	<a href="https://www.officeanything.com/ofm-small-clamp-on-sit-to-stand-workstation-5200s" target="_blank">
+      <img src='https://i.pinimg.com/originals/88/46/08/8846082e09a224174d6db040ad2e9b63.jpg' width="200" style="border: solid 2px black;" />
+	  </a>
+      <br>
+	  Description :
+	  <br>
+	  Price:
+    </div>
+	<div class="col-3 text-left  font-weight-bold">
+	  <a href="https://www.officeanything.com/safco-soar-electric-desktop-sit-stand-station/" target="_blank">	
+      <img src='https://cdn11.bigcommerce.com/s-i16nt17fuj/images/stencil/1280x1280/products/6279/20048/2191WH_FrontAngleBase_lr__63076.1560350009.jpg?c=2' width="200" style="border: solid 2px black;" />
+	  </a>
+      <br>
+	  Description :
+	  <br>
+	  Price:
+    </div>
+</div>
+
+ 
+
+
+</div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ </body>
+</html>
