@@ -59,6 +59,30 @@ code {
 .col {
   flex: 1; /* additionally, equal width */
 }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
 
 
 .Middlediv{
@@ -230,9 +254,11 @@ button:hover{
      <div class="col-4">
           <br>
           <br>
-          <a href="Premiuim.html"><button type="button">Premium</button></a>
-          <a href="Shop.html"><button type="button">Shop</button></a>
-          <a href="Download.html"><button type="button">Download</button></a>  		  
+		  <ul>
+           <li><a href="Premiuim.html"><button type="button">Premium</button></a></li>
+           <li><a href="Shop.html"><button type="button">Shop</button></a></li>
+           <li><a href="Download.html"><button type="button">Download</button></a></li> 
+		  </ul>		   
       </div>
       <div class="col-5">
         <br>
